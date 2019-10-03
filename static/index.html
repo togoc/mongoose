@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/layout.css">
+    <title>mongoose 测试</title>
+</head>
+
+<body>
+
+    <center>
+        <h3>个人简历</h3>
+        <!-- </center> -->
+        <!-- <center> -->
+        <div class="table">
+            <form action="#" id="personal">
+                <table border="1px" cellspacing="0">
+                    <col width="120px" height="40px">
+                    <col width="120px" height="40px">
+                    <col width="120px" height="40px">
+                    <col width="120px" height="40px">
+                    <col width="120px" height="40px">
+                    <col width="120px" height="40px">
+                    <col width="120px" height="40px">
+                    <col width="120px" height="40px">
+                    <tr>
+                        <td colspan="7">个人简历</td>
+                    </tr>
+                    <tr>
+                        <td>姓名</td>
+                        <td><input type="text" class="name" autofocus></td>
+                        <td>性别</td>
+                        <td><input type="text" class="gender"></td>
+                        <td>年龄</td>
+                        <td><input type="number" class="age"></td>
+                        <td rowspan="5">图片</td>
+                    </tr>
+                    <tr>
+                        <td>学历</td>
+                        <td><input type="text" class="education"></td>
+                        <td>籍贯</td>
+                        <td colspan="3"><input type="text" class="native_place"></td>
+                    </tr>
+                    <tr>
+                        <td>电话</td>
+                        <td><input type="" class="phone"></td>
+                        <td>政治面貌</td>
+                        <td colspan="3"><input type="text" class="zzmm"></td>
+                    </tr>
+                    <tr>
+                        <td>毕业院校</td>
+                        <td colspan="5"><input type="text" class="school"></td>
+                    </tr>
+                    <tr>
+                        <td>求职意向</td>
+                        <td colspan="5"><input type="text" class="jod"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <!-- </center> -->
+        <!-- <center> -->
+        <div>
+            <input type="button" value="重置" class="reset">
+            <input type="button" value="保存" class="save" onclick="save()">
+        </div>
+    </center>
+
+</body>
+<script src="/static/js/juqery_3.4.1.js"></script>
+<script src="/static/js/dbtest_common.js"></script>
+
+</html>
