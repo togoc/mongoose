@@ -1,3 +1,20 @@
+/**
+ * 传入一个对象,删除值为空的属性且去除属性名左右空格,并返回
+ * @param {object} obj 传入的对象
+ */
+function delete_space(obj) {
+    for (let i in obj) {
+        if (obj[i] == "") {
+            delete obj[i]
+        }
+        else {
+            obj[i] = obj[i].trim()
+        }
+
+    }
+    return obj
+}
+
 function save() {
     let name = document.querySelector(".name").value
     let gender = document.querySelector(".gender").value
@@ -8,25 +25,12 @@ function save() {
     let jod = document.querySelector(".jod").value
     let school = document.querySelector(".school").value
     let zzmm = document.querySelector(".zzmm").value
-
     if (name == "") {
         alert("名字不能为空!")
         return
     }
     var obj = {
         name, gender, age, education, native_place, phone, jod, school, zzmm
-    }
-    function delete_space(obj) {
-        for (let i in obj) {
-            if (obj[i] == "") {
-                delete obj[i]
-            }
-            else {
-                obj[i] = obj[i].trim()
-            }
-
-        }
-        return obj
     }
     var url = "/addStudent"
     $.ajax({
@@ -58,7 +62,10 @@ function save() {
     })
 }
 
-
+/**
+ * 显示数据库内容
+ * @param {array} array 传入一个数组数据
+ */
 function showDocument(array) {
     let form_table = $(".form_table")
     let html = ''
@@ -92,7 +99,9 @@ function startLoad() {
     )
 }
 
-
+/**
+ * @param {string} name 根据名字删除数据库中对应项
+ */
 function remove(name) {
     let url = "/remove?name=" + name
     $.ajax({ url }).done(
@@ -108,6 +117,9 @@ function remove(name) {
 
 
 window.onload = function () {
+    /**
+     * 初始化,清空输入和删除绑定
+     */
     var host = this.location.host
     console.log(host)
     var personal = document.querySelector("#personal")
