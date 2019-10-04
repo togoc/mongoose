@@ -34,8 +34,8 @@ var studentsSchema = Schema({
         default: "广西壮族自治区"
     },
     phone: {
-        type: Number,
-        default: 0771
+        type: String,
+        default: "0771"
     }
 })
 // studentSchema.methods.speak = function () {

@@ -12,7 +12,9 @@
 <body>
 
     <center>
-        <h3>个人简历</h3>
+        <thead>
+            <h3>个人简历</h3>
+        </thead>
         <!-- </center> -->
         <!-- <center> -->
         <div class="table">
@@ -27,13 +29,16 @@
                     <col width="120px" height="40px">
                     <col width="120px" height="40px">
                     <tr>
-                        <td colspan="7">个人简历</td>
+                        <th colspan="7">个人简历</th>
                     </tr>
                     <tr>
                         <td>姓名</td>
                         <td><input type="text" class="name" autofocus></td>
                         <td>性别</td>
-                        <td><input type="text" class="gender"></td>
+                        <td><select class="gender">
+                                <option value="女">女</option>
+                                <option value="男">男</option>
+                            </select></td>
                         <td>年龄</td>
                         <td><input type="number" class="age"></td>
                         <td rowspan="5">图片</td>
@@ -46,7 +51,7 @@
                     </tr>
                     <tr>
                         <td>电话</td>
-                        <td><input type="" class="phone"></td>
+                        <td><input type="number" class="phone"></td>
                         <td>政治面貌</td>
                         <td colspan="3"><input type="text" class="zzmm"></td>
                     </tr>
@@ -68,7 +73,31 @@
             <input type="button" value="保存" class="save" onclick="save()">
         </div>
     </center>
-
+    <center>
+        <!-- <div class="list_table"> -->
+        <form action="#" id="list_form">
+            <table border="1" cellspacing="0">
+                <thead>
+                    <h3>students document</h3>
+                </thead>
+                <tbody class="form_table">
+                    <tr>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>学历</th>
+                        <th>籍贯</th>
+                        <th>电话</th>
+                        <th>政治面貌</th>
+                        <th>求职意向</th>
+                        <th>毕业院校</th>
+                        <th>删除</th>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <!-- </div> -->
+    </center>
 </body>
 <script src="/static/js/juqery_3.4.1.js"></script>
 <script src="/static/js/dbtest_common.js"></script>

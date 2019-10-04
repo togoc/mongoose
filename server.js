@@ -16,11 +16,6 @@ app.use("/static", express.static("static"))
 
 
 
-
-
-
-
-
 app.post("/addStudent", function (rq, rs) {
     let tgc = new students(rq.body)
 
@@ -30,27 +25,45 @@ app.post("/addStudent", function (rq, rs) {
         } else {
             //保存到数据库
             console.log(err)
-            rs.send('错误')
+            rs.send({ code: 0, msg: "数据库出错" })
         }
         if (docs.length == 0) {
             console.log("集合为空!正在尝试添加数据!")
             tgc.save(function (err) {
                 if (!err) {
-                    console.log("save ok!")
+                    console.log("save ok 添加成功!")
+                    students.find(function (err, res) {
+                        rs.send(res)
+                    })
                 } else {
                     console.log("can not save!")
+                    rs.send({ code: 0 })
                 }
             })
+
         } else {
             console.log("集合不为空!添加失败!")
+            rs.send({ code: 0 })
         }
     })
-    console.log(rq.body)
-    rs.send('ok')
 })
 
 
 
+
+app.get("/list", function (rq, rs) {
+    students.find(function (err, res) {
+        rs.send(res)
+    })
+})
+
+app.get("/remove", function (rq, rs) {
+    let name = rq.query.name
+    students.deleteOne({ name }, function (res) {
+        console.log("已删除名字为 " + name + " 的数据库记录")
+    })
+    rs.send({ code: 1 })
+})
 app.listen('8989', function () {
     console.log("端口8989已经开启")
 })
