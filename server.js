@@ -13,9 +13,6 @@ app.use("/", express.static(__dirname + '/static'))
 app.use("/static", express.static("static"))
 
 
-
-
-
 app.post("/addStudent", function (rq, rs) {
     let tgc = new students(rq.body)
 

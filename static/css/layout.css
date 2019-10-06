@@ -31,9 +31,7 @@ center:nth-of-type(2) {
 #list_form input:hover {
     background: red;
 }
-.form_table{
-    overflow: hidden;
-}
+
 #list_form{
     height: 10px;
 }
@@ -41,4 +39,11 @@ center:nth-of-type(2) {
     width: 100%;
     height:0px;
     overflow: hidden;
+}
+.list_table tr{
+    height: 100px;
+}
+.form_table tr{
+    /* height: 100px; */
+
 }

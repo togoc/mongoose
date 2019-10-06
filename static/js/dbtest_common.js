@@ -1,42 +1,32 @@
 /**
  * 传入一个对象,删除值为空的属性且去除属性名左右空格,并返回
+ * (添加防注入)
  * @param {object} obj 传入的对象
  */
-function delete_space(obj) {
+function fixData(obj) {
+    let reg = /<|>|%|\\|"|=|'|{|}|!|\?|\(|\)|\*/;
+    let url = "/addStudent"
     for (let i in obj) {
         if (obj[i] == "") {
             delete obj[i]
         }
         else {
             obj[i] = obj[i].trim()
+            if (reg.test(obj[i])) {
+                alert("数据类型错误: " + '"' + obj[i].match(reg) + '"')
+                console.log(obj[i].match(reg))
+                return
+            }
+            if (/\s{3}/.test(obj[i])) {
+                alert("空格太多了: " + obj[i])
+                return
+            }
         }
-
     }
-    return obj
-}
-
-function save() {
-    let name = document.querySelector(".name").value
-    let gender = document.querySelector(".gender").value
-    let age = document.querySelector(".age").value
-    let education = document.querySelector(".education").value
-    let native_place = document.querySelector(".native_place").value
-    let phone = document.querySelector(".phone").value
-    let jod = document.querySelector(".jod").value
-    let school = document.querySelector(".school").value
-    let zzmm = document.querySelector(".zzmm").value
-    if (name == "") {
-        alert("名字不能为空!")
-        return
-    }
-    var obj = {
-        name, gender, age, education, native_place, phone, jod, school, zzmm
-    }
-    var url = "/addStudent"
     $.ajax({
         url,
         type: "post",
-        data: delete_space(obj),
+        data: obj
     }).done(function (res) {
         if (res.code == 0) {
             console.log(res)
@@ -60,6 +50,26 @@ function save() {
                     </tr>`
         form_table.append(html)
     })
+}
+
+function save() {
+    let name = document.querySelector(".name").value.replace(/\s*/g, "")
+    let gender = document.querySelector(".gender").value
+    let age = document.querySelector(".age").value
+    let education = document.querySelector(".education").value
+    let native_place = document.querySelector(".native_place").value
+    let phone = document.querySelector(".phone").value
+    let jod = document.querySelector(".jod").value
+    let school = document.querySelector(".school").value
+    let zzmm = document.querySelector(".zzmm").value
+    if (name == "") {
+        alert("名字不能为空!")
+        return
+    }
+    let obj = {
+        name, gender, age, education, native_place, phone, jod, school, zzmm
+    }
+    fixData(obj)
 }
 
 /**
