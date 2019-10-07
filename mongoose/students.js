@@ -36,6 +36,10 @@ var studentsSchema = Schema({
     phone: {
         type: String,
         default: "0771"
+    },
+    pic: {
+        type: String,
+        default: "/static/images/h_unknown.png"
     }
 })
 // studentSchema.methods.speak = function () {

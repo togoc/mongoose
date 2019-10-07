@@ -53,6 +53,10 @@ function fixData(obj) {
 }
 
 function save() {
+    let picture_name = document.querySelector("#file_input").files
+    let pic = ""
+    if (picture_name[0])
+        console.log(pic = picture_name[0].name)
     let name = document.querySelector(".name").value.replace(/\s*/g, "")
     let gender = document.querySelector(".gender").value
     let age = document.querySelector(".age").value
@@ -67,7 +71,7 @@ function save() {
         return
     }
     let obj = {
-        name, gender, age, education, native_place, phone, jod, school, zzmm
+        name, gender, age, education, native_place, phone, jod, school, zzmm, pic
     }
     fixData(obj)
 }

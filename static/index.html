@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico" />
     <link rel="stylesheet" href="/static/css/layout.css">
     <title>mongoose 测试</title>
 </head>
@@ -41,7 +42,12 @@
                             </select></td>
                         <td>年龄</td>
                         <td><input type="number" class="age" value="19"></td>
-                        <td rowspan="5">图片</td>
+                        <td rowspan="5" class="picture_container">
+                            <div class="pictrue">
+                                <div id="add_file" title="修改">+</div>
+                                <div class="select_tips">图片</div>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>学历</td>
@@ -94,8 +100,11 @@
             </table>
         </form>
     </center>
+    <img src="/dist/video.png" alt="">
+    <input id="file_input" type="file" name="picture" accept="image/*">
 </body>
 <script src="/static/js/juqery_3.4.1.js"></script>
 <script src="/static/js/dbtest_common.js"></script>
+<script src="/static/js/file.js"></script>
 
 </html>
