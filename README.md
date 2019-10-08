@@ -69,7 +69,16 @@
   ![](static/images/loading.png)
 * 添加异步处理ajax请求
     ```
-    return await new Promise((resolve, reject) => {
+    /**
+   * 
+   * @param {string} url 请求地址
+   * @param {string} type 请求方式
+   * @param {object} data post 发送数据
+   * @param {Boolean} processData 发送文件选false,默认true
+   * @param {Boolean} contentType 发送文件选false,默认true
+   */
+    async function ajax(url, type, data, processData, contentType) {
+        return await new Promise((resolve, reject) => {
             $.ajax(method).done(
                 function (res) {
                     student_list = res.res
@@ -78,6 +87,7 @@
                 }
             )
         })
+    }
     ```
 
 
