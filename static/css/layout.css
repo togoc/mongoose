@@ -67,9 +67,6 @@ center:nth-of-type(2) {
     background: rgb(64, 146, 214);
 }
 
-#add_file {
-    /* font-size: 20px; */
-}
 
 .picture_container {
     background-size: 100% 100%;
@@ -79,4 +76,27 @@ center:nth-of-type(2) {
 
 .select_tips {
     font-size: 14px;
+}
+
+.load_pic {
+    border-radius: 25px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    /* background-color: red; */
+    left: 0px;
+    top: 0px;
+    opacity: 0;
+    -moz-user-select: none;
+    user-select: none;
+    z-index: -1;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.tips {
+    display: block;
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
 }

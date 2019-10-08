@@ -1,3 +1,4 @@
+let student_list = []
 /**
  * 传入一个对象,删除值为空的属性且去除属性名左右空格,并返回
  * (添加防注入)
@@ -28,6 +29,9 @@ function fixData(obj) {
         type: "post",
         data: obj
     }).done(function (res) {
+        //保存返回
+        student_list = res
+        console.log(res)
         if (res.code == 0) {
             console.log(res)
             alert("已存在")
@@ -74,6 +78,8 @@ function save() {
         name, gender, age, education, native_place, phone, jod, school, zzmm, pic
     }
     fixData(obj)
+    $("#file_input").val("")
+    console.log(picture_name)
 }
 
 /**
@@ -108,6 +114,9 @@ function startLoad() {
     let url = "/list"
     $.ajax({ url }).done(
         function (res) {
+            // 登录返回
+            student_list = res
+            console.log(res)
             showDocument(res)
         }
     )
@@ -116,11 +125,12 @@ function startLoad() {
 /**
  * @param {string} name 根据名字删除数据库中对应项
  */
-function remove(name) {
-    let url = "/remove?name=" + name
+function remove(obj) {
+
+    let url = "/remove?name=" + obj.name + "&pic=" + obj.pic
     $.ajax({ url }).done(
         function (res) {
-            console.log(res)
+            student_list = res.res
             if (res.code == 1) {
                 // alert("删除成功!")
             }
@@ -138,15 +148,37 @@ window.onload = function () {
     console.log(host)
     var personal = document.querySelector("#personal")
     var reset = document.querySelector(".reset")
+    let load_pic = $(".load_pic")
     reset.addEventListener("click", (evet) => {
         personal.reset()
     })
     $(".form_table").click(function (evet) {
         if (evet.target.nodeName.toUpperCase() == "INPUT") {
             $(evet.target.closest('tr')).hide(500)
-            remove(evet.target.closest('tr').children[0].innerHTML)
+            remove(student_list[evet.target.closest('tr').rowIndex - 1])
         }
 
+    })
+    $(".form_table").mouseover(function (evet) {
+        // 表格单元格TD元素有 cellIndex 属性。
+        // 表格行TR元素有rowIndex属性。
+        if (evet.target.nodeName.toUpperCase() == "INPUT") {
+            console.log(`${student_list[evet.target.closest('tr').rowIndex - 1]}`)
+            load_pic.css("background-image", `url(${student_list[evet.target.closest('tr').rowIndex - 1].pic})`)
+            load_pic.animate({ left: evet.pageX + 60, top: evet.pageY - 60 }).animate({ opacity: 1 })
+        }
+
+    })
+    $(".form_table").mouseleave(function (evet) {
+        load_pic.animate({ opacity: 0, zIndex: -1 }, function () {
+            load_pic.animate({ opacity: 0, zIndex: -1 })
+        })
+    })
+    $(".form_table").mouseout(function (evet) {
+        if (evet.target.nodeName.toUpperCase() == "INPUT") {
+            load_pic.animate({ opacity: 0, zIndex: -1 }).stop(true)
+
+        }
     })
     startLoad()
 

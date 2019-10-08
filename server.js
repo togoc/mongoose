@@ -28,10 +28,36 @@ app.post("/files", function (rq, rs) {
         url: "/dist/" + rq.files[0].originalname
     })
 })
-
-
+/**
+ * 递归创建文件夹
+ * @param {string} str 输入一个有关路径的字符串
+ */
+function new_dir(str) {
+    let array = str.replace(/^\/*|\/*$/g, "").split('/')
+    let dir = __dirname
+    for (let i = 0; i < array.length; i++) {
+        dir += "/" + array[i]
+        console.log(dir)
+        if (fs.existsSync(dir)) {
+            continue
+        } else {
+            fs.mkdirSync(dir)
+        }
+    }
+}
+/**
+ * (不能用于包含文件夹的dir)
+ * @param {string} str 输入一个文件夹地址删除里面的文件
+ */
+function dlete_files(str) {
+    fs.readdirSync(str).forEach(function (el, index) {
+        if (fs.existsSync(str + "/" + el)) {
+            if (el.indexOf(".") != -1)
+                fs.unlinkSync(str + "/" + el)
+        }
+    })
+}
 app.post("/addStudent", function (rq, rs) {
-    let tgc = new students(rq.body)
     console.log(rq.body.name, rq.body.pic)
     students.find({ name: rq.body.name }, "name", function (err, docs) {
         if (!err) {
@@ -43,10 +69,23 @@ app.post("/addStudent", function (rq, rs) {
         }
         if (docs.length == 0) {
             console.log("集合为空!正在尝试添加数据!")
+            // 头像处理
+            if (rq.body.pic) {
+                // 处理路径
+                new_dir('/static/images/head')
+                if (fs.existsSync(__dirname + "/dist/" + rq.body.pic)) {
+                    fs.renameSync(__dirname + "/dist/" + rq.body.pic, __dirname + "/static/images/head/h_" + rq.body.name + "." + rq.body.pic.split(".")[1])
+                    rq.body.pic = "/static/images/head/" + "h_" + rq.body.name + "." + rq.body.pic.split(".")[1]
+                    //移动之后清空"dist文件夹
+                    dlete_files(__dirname + '/dist/')
+                }
+            }
+
+            let tgc = new students(rq.body)
             tgc.save(function (err) {
                 if (!err) {
                     console.log("save ok 添加成功!")
-                    students.find(function (err, res) {
+                    students.find({}, function (err, res) {
                         rs.send(res)
                     })
                 } else {
@@ -65,6 +104,7 @@ app.post("/addStudent", function (rq, rs) {
 
 
 
+
 app.get("/list", function (rq, rs) {
     students.find(function (err, res) {
         rs.send(res)
@@ -74,9 +114,15 @@ app.get("/list", function (rq, rs) {
 app.get("/remove", function (rq, rs) {
     let name = rq.query.name
     students.deleteOne({ name }, function (res) {
+        if (rq.query.pic != "/static/images/h_unknown.png")
+            if (fs.existsSync(__dirname + rq.query.pic)) {
+                fs.unlinkSync(__dirname + rq.query.pic)
+            }
         console.log("已删除名字为 " + name + " 的数据库记录")
     })
-    rs.send({ code: 1 })
+    students.find({}, function (err, res) {
+        rs.send({ code: 1, res })
+    })
 })
 
 
