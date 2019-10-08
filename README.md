@@ -63,10 +63,10 @@
         ```
 * 添加显示头像
   
- ![](static/md_head.png)
+ > ![](static/md_head.png)
 * 添加加载效果
   
- ![](static/images/loading.png)
+ > ![](static/images/loading.png)
 * 添加异步处理ajax请求
     ```
     /**
