@@ -50,7 +50,6 @@
             let dir = __dirname
             for (let i = 0; i < array.length; i++) {
                 dir += "/" + array[i]
-                console.log(dir)
                 if (fs.existsSync(dir)) {
                     continue
                 } else {
