@@ -63,7 +63,7 @@
         ```
 * 添加显示头像
 * 
-  ![](static/images/ms_head.png)
+  ![](static/md_head.png)
 * 添加加载效果
 * 
   ![](static/images/loading.png)
