@@ -24,18 +24,14 @@ function fixData(obj) {
             }
         }
     }
-    $.ajax({
-        url,
-        type: "post",
-        data: obj
-    }).done(function (res) {
+    ajax(url, "post", obj).then((res) => {
         //保存返回
-        student_list = res
-        console.log(res)
+        // student_list = res
         if (res.code == 0) {
-            console.log(res)
             alert("已存在")
             return
+        } else {
+            res = res.res
         }
         let form_table = $(".form_table")
         let i = res.length - 1
@@ -60,7 +56,7 @@ function save() {
     let picture_name = document.querySelector("#file_input").files
     let pic = ""
     if (picture_name[0])
-        console.log(pic = picture_name[0].name)
+        pic = picture_name[0].name
     let name = document.querySelector(".name").value.replace(/\s*/g, "")
     let gender = document.querySelector(".gender").value
     let age = document.querySelector(".age").value
@@ -79,7 +75,8 @@ function save() {
     }
     fixData(obj)
     $("#file_input").val("")
-    console.log(picture_name)
+    $(".picture_container").css("background-image", 'url(/static/images/file.png)')
+
 }
 
 /**
@@ -110,42 +107,90 @@ function showDocument(array) {
     form_table.show(500)
 }
 
+
+
+/**
+ * 
+ * @param {string} url 请求地址
+ * @param {string} type 请求方式
+ * @param {object} data post 发送数据
+ * @param {Boolean} processData 发送文件选false,默认true
+ * @param {Boolean} contentType 发送文件选false,默认true
+ */
+async function ajax(url, type = "get", data = {}, processData = true, contentType = true) {
+    let method = {
+        url, type, data,
+        processData,
+        contentType
+    }
+    if (method.contentType)
+        delete method.contentType
+    $(".loading").show()
+    return await new Promise((resolve, reject) => {
+        $.ajax(method).done(
+            function (res) {
+                student_list = res.res
+                console.log(res)
+                resolve(res)
+                // $(".loading").hide()
+            }
+        )
+    })
+}
+
+
+
+// 登录返回
 function startLoad() {
     let url = "/list"
-    $.ajax({ url }).done(
-        function (res) {
-            // 登录返回
-            student_list = res
-            console.log(res)
-            showDocument(res)
-        }
-    )
+    ajax(url).then(function (res) {
+        showDocument(res.res)
+    })
 }
 
 /**
  * @param {string} name 根据名字删除数据库中对应项
  */
 function remove(obj) {
-
     let url = "/remove?name=" + obj.name + "&pic=" + obj.pic
-    $.ajax({ url }).done(
-        function (res) {
-            student_list = res.res
-            if (res.code == 1) {
-                // alert("删除成功!")
-            }
+    ajax(url).then((res) => {
+        if (res.code == 1) {
+            location.reload()
         }
-    )
+    })
 }
 
 
+// 上传文件
+function postFile() {
+    let add_file = document.querySelector(".pictrue")
+    let file_input = document.querySelector("#file_input")
+    /**
+     * 伪触发
+     */
+    add_file.addEventListener("click", function () {
+        file_input.click()
+    })
+    /**
+     * 接收数据时发送数据
+     */
+    file_input.addEventListener("change", function () {
+        let pictrue_data = new FormData()
+        let picture_container = $(".picture_container")
+        $(add_file).animate({ top: 30 })
+        $(".select_tips").html(this.files[0].name)
+        pictrue_data.append("picture", this.files[0])
+        ajax("/files", "post", pictrue_data, false, false).then((res) => {
+            picture_container.css("background-image", ` url(${res.url})`)
+        })
+    })
+}
 
 window.onload = function () {
     /**
      * 初始化,清空输入和删除绑定
      */
     var host = this.location.host
-    console.log(host)
     var personal = document.querySelector("#personal")
     var reset = document.querySelector(".reset")
     let load_pic = $(".load_pic")
@@ -163,7 +208,7 @@ window.onload = function () {
         // 表格单元格TD元素有 cellIndex 属性。
         // 表格行TR元素有rowIndex属性。
         if (evet.target.nodeName.toUpperCase() == "INPUT") {
-            console.log(`${student_list[evet.target.closest('tr').rowIndex - 1]}`)
+            console.log(`${evet.target.closest('tr').rowIndex}`)
             load_pic.css("background-image", `url(${student_list[evet.target.closest('tr').rowIndex - 1].pic})`)
             load_pic.animate({ left: evet.pageX + 60, top: evet.pageY - 60 }).animate({ opacity: 1 })
         }
@@ -181,5 +226,6 @@ window.onload = function () {
         }
     })
     startLoad()
+    postFile()
 
 }

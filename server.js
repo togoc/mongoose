@@ -23,9 +23,8 @@ app.use("/dist", express.static("dist"))
 app.post("/files", function (rq, rs) {
     fs.renameSync(__dirname + "/dist/" + rq.files[0].filename, __dirname + "/dist/" + rq.files[0].originalname)
     console.log(rq)
-    rs.send({
-        code: 1,
-        url: "/dist/" + rq.files[0].originalname
+    students.find(function (err, res) {
+        rs.send({ code: 1, res, url: "/dist/" + rq.files[0].originalname })
     })
 })
 /**
@@ -86,7 +85,7 @@ app.post("/addStudent", function (rq, rs) {
                 if (!err) {
                     console.log("save ok 添加成功!")
                     students.find({}, function (err, res) {
-                        rs.send(res)
+                        rs.send({ code: 1, res })
                     })
                 } else {
                     console.log("can not save!")
@@ -107,7 +106,7 @@ app.post("/addStudent", function (rq, rs) {
 
 app.get("/list", function (rq, rs) {
     students.find(function (err, res) {
-        rs.send(res)
+        rs.send({ code: 1, res })
     })
 })
 
@@ -126,6 +125,14 @@ app.get("/remove", function (rq, rs) {
 })
 
 
+app.get("/test", function (rq, rs) {
+    console.log(rq.query)
+    rs.send("ok")
+})
+app.post("/test", function (rq, rs) {
+    console.log(rq.body.name)
+    rs.send("ok")
+})
 
 app.listen('8989', function () {
     console.log("端口8989已经开启")

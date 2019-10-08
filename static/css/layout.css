@@ -67,7 +67,6 @@ center:nth-of-type(2) {
     background: rgb(64, 146, 214);
 }
 
-
 .picture_container {
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -83,7 +82,6 @@ center:nth-of-type(2) {
     width: 100px;
     height: 100px;
     position: absolute;
-    /* background-color: red; */
     left: 0px;
     top: 0px;
     opacity: 0;
@@ -96,7 +94,76 @@ center:nth-of-type(2) {
 
 .tips {
     display: block;
-    color: red;
+    color: rgb(197, 34, 34);
     font-size: 14px;
     font-weight: bold;
+}
+
+.loading {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    left: 0;
+    top: 0;
+    background: rgba(73, 72, 72, 0.5);
+}
+
+.bg {
+    margin: auto;
+    position: absolute;
+    background: green;
+    width: 20px;
+    border-radius: 50%;
+    height: 20px;
+    transition: all 2s;
+    animation: loading linear infinite 3s;
+}
+
+.bg1 {
+    margin: auto;
+    position: absolute;
+    width: 20px;
+    border-radius: 50%;
+    height: 20px;
+    transition: all 2s;
+    box-shadow: 10px 0px 5px #e90202;
+    animation: loading1 linear infinite 3s;
+}
+
+.loading_container {
+    margin: auto;
+}
+
+@keyframes loading {
+    0% {
+        background: white;
+        box-shadow: 10px 0px 5px white;
+        transform: rotate(0deg);
+    }
+    50% {
+        background: red;
+        box-shadow: 10px 0px 5px red;
+        transform: rotate(360deg);
+    }
+    100% {
+        background: white;
+        box-shadow: 10px 0px 5px white;
+        transform: rotate(0);
+    }
+}
+
+@keyframes loading1 {
+    0% {
+        box-shadow: 10px 0px 5px white;
+        transform: rotate(360deg);
+    }
+    50% {
+        box-shadow: 10px 0px 5px red;
+        transform: rotate(0deg);
+    }
+    100% {
+        box-shadow: 10px 0px 5px white;
+        transform: rotate(360deg);
+    }
 }

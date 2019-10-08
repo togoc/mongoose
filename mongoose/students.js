@@ -4,7 +4,10 @@ var Schema = mongoose.Schema
 
 //创建集合
 var studentsSchema = Schema({
-    name: String,
+    name: {
+        type: String,
+        default: "佚名"
+    },
     age: {
         type: Number,
         default: 18

@@ -62,8 +62,26 @@
         }
         ```
 * 添加显示头像
+* 
+  ![](static/images/ms_head.png)
+* 添加加载效果
+* 
+  ![](static/images/loading.png)
+* 添加异步处理ajax请求
+    ```
+    return await new Promise((resolve, reject) => {
+            $.ajax(method).done(
+                function (res) {
+                    student_list = res.res
+                    console.log(res)
+                    resolve(res)
+                }
+            )
+        })
+    ```
 
-![](static/images/ms_head.png)
+
+
 
 * 问题:删除所有记录后再添加图片显示错误
 ## 数据库基本操作
