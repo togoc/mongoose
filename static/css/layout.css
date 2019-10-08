@@ -59,7 +59,7 @@ center:nth-of-type(2) {
     cursor: pointer;
     position: relative;
     top: 5px;
-    color: rgb(8, 12, 224);
+    color: rgb(215, 230, 5);
     font-weight: bold;
 }
 
@@ -70,7 +70,7 @@ center:nth-of-type(2) {
 .picture_container {
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-image: url(/static/images/file.png)
+    background-image: url(/static/images/file.gif)
 }
 
 .select_tips {

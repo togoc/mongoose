@@ -73,7 +73,7 @@ function save() {
     let obj = { name, gender, age, education, native_place, phone, jod, school, zzmm, pic }
     fixData(obj)
     $("#file_input").val("")
-    $(".picture_container").css("background-image", 'url(/static/images/file.png)')
+    $(".picture_container").css("background-image", 'url(/static/images/file.gif)')
 
 }
 

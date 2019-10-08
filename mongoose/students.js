@@ -42,7 +42,7 @@ var studentsSchema = Schema({
     },
     pic: {
         type: String,
-        default: "/static/images/h_unknown.png"
+        default: "/static/images/file.gif"
     }
 })
 // studentSchema.methods.speak = function () {
