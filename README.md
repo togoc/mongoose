@@ -1,6 +1,9 @@
 # mongoose
 ## 安装mongoDB
 * `sudo apt-get install mongodb`
+
+## 部分处理
+* 添加favicon.ico:` <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico" />`
 * 添加防注入
 
     ```  
@@ -58,7 +61,11 @@
             }
         }
         ```
+* 添加显示头像
 
+![](static/images/ms_head.png)
+
+* 问题:删除所有记录后再添加图片显示错误
 ## 数据库基本操作
 [实例地址](http:182.254.195.126:8989)
 
