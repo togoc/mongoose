@@ -125,15 +125,6 @@ app.get("/remove", function (rq, rs) {
 })
 
 
-app.get("/test", function (rq, rs) {
-    console.log(rq.query)
-    rs.send("ok")
-})
-app.post("/test", function (rq, rs) {
-    console.log(rq.body.name)
-    rs.send("ok")
-})
-
 app.listen('8989', function () {
     console.log("端口8989已经开启")
 })
