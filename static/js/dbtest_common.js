@@ -70,9 +70,7 @@ function save() {
         alert("名字不能为空!")
         return
     }
-    let obj = {
-        name, gender, age, education, native_place, phone, jod, school, zzmm, pic
-    }
+    let obj = { name, gender, age, education, native_place, phone, jod, school, zzmm, pic }
     fixData(obj)
     $("#file_input").val("")
     $(".picture_container").css("background-image", 'url(/static/images/file.png)')
@@ -108,7 +106,6 @@ function showDocument(array) {
 }
 
 
-
 /**
  * 
  * @param {string} url 请求地址
@@ -118,11 +115,7 @@ function showDocument(array) {
  * @param {Boolean} contentType 发送文件选false,默认true
  */
 async function ajax(url, type = "get", data = {}, processData = true, contentType = true) {
-    let method = {
-        url, type, data,
-        processData,
-        contentType
-    }
+    let method = { url, type, data, processData, contentType }
     if (method.contentType)
         delete method.contentType
     $(".loading").show()
@@ -130,9 +123,8 @@ async function ajax(url, type = "get", data = {}, processData = true, contentTyp
         $.ajax(method).done(
             function (res) {
                 student_list = res.res
-                console.log(res)
                 resolve(res)
-                // $(".loading").hide()
+                $(".loading").hide()
             }
         )
     })
@@ -190,7 +182,7 @@ window.onload = function () {
     /**
      * 初始化,清空输入和删除绑定
      */
-    var host = this.location.host
+    console.log(this.location.host)
     var personal = document.querySelector("#personal")
     var reset = document.querySelector(".reset")
     let load_pic = $(".load_pic")
@@ -208,7 +200,6 @@ window.onload = function () {
         // 表格单元格TD元素有 cellIndex 属性。
         // 表格行TR元素有rowIndex属性。
         if (evet.target.nodeName.toUpperCase() == "INPUT") {
-            console.log(`${evet.target.closest('tr').rowIndex}`)
             load_pic.css("background-image", `url(${student_list[evet.target.closest('tr').rowIndex - 1].pic})`)
             load_pic.animate({ left: evet.pageX + 60, top: evet.pageY - 60 }).animate({ opacity: 1 })
         }
@@ -227,5 +218,4 @@ window.onload = function () {
     })
     startLoad()
     postFile()
-
 }
