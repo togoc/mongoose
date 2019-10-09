@@ -10597,6 +10597,4 @@
 
     return jQuery;
 });
-if ($(".loading").length === 1) {
-    $(".loading").show()
-}
+
