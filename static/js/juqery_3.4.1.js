@@ -3976,8 +3976,8 @@
                 for (; i < len; i++) {
                     fn(
                         elems[i], key, raw ?
-                            value :
-                            value.call(elems[i], i, fn(elems[i], key))
+                        value :
+                        value.call(elems[i], i, fn(elems[i], key))
                     );
                 }
             }
@@ -10597,3 +10597,6 @@
 
     return jQuery;
 });
+if ($(".loading").length === 1) {
+    $(".loading").show()
+}
