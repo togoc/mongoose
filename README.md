@@ -132,7 +132,7 @@
 
 
 ### 密码连接
-
+* 带密码的连接数据库
     ```
         // Build the connection string
         var dbURI = 'mongodb://localhost/students';
