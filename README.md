@@ -131,6 +131,24 @@
 |     `db.dropAllUser()`     |        删除当前库的所有用户        |
 
 
+### 密码连接
+
+    ```
+        // Build the connection string
+        var dbURI = 'mongodb://localhost/students';
+        const options = {
+            useNewUrlParser: true //使用客户端
+            , useUnifiedTopology: true //报错
+            , authSource: "admin",
+            user: "togoc",
+            pass: "tgc.123"
+        }
+
+        // Create the database connection
+        mongoose.connect(dbURI, options);
+    ```
+
+
 
 
 

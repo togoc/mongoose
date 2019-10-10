@@ -11,9 +11,6 @@ const options = {
     user: "togoc",
     pass: "tgc.123"
 }
-// ,
-//     user: "togoc",
-//     pass: "tgc.123",
 
 // Create the database connection
 mongoose.connect(dbURI, options);
