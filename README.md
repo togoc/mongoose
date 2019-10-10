@@ -105,10 +105,10 @@
 关闭27017防火墙端口: `iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 27017 -j ACCEPT`
 
 ### 添加用户
-    ```
-    use db
-    db.createUser({user:"用户名",pwd:"密码",roles:[{ role: "readWrite", db: "所属数据库" }]})
-    ```
+
+`use db`
+`db.createUser({user:"用户名",pwd:"密码",roles:[{ role: "readWrite", db: "所属数据库" }]})`
+
 * 先进入数据库然后再创建用户及其权限
 
 ### 删除用户
@@ -116,7 +116,7 @@
 
 |            命令            |                使用                |
 | :------------------------: | :--------------------------------: |
-|       `show users`"        | 可以显示当前数据库所有用户及其权限 |
+|        `show users`        | 可以显示当前数据库所有用户及其权限 |
 | `db.dropUser(<user_name>)` |    删除某个用户，接受字符串参数    |
 |     `db.dropAllUser()`     |        删除当前库的所有用户        |
 
