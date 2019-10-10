@@ -97,6 +97,7 @@
 
 ## 数据库基本操作
 [实例地址](http:182.254.195.126:8989)
+[官方文档参考](http://www.mongoosejs.net/docs/connections.html)
 
 配置文件地址: `/etc/mongodb.conf`
 
