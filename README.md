@@ -98,4 +98,34 @@
 ## 数据库基本操作
 [实例地址](http:182.254.195.126:8989)
 
+### 添加用户
+    ```
+    use db
+    db.createUser({user:"用户名",pwd:"密码",roles:[{ role: "readWrite", db: "所属数据库" }]})
+    ```
+* 先进入数据库然后再创建用户及其权限
+
+### 删除用户
+进入对应数据库 `show users` 可以显示当前数据库所有用户及其权限
+`db.dropUser(<user_name>)` 删除某个用户，接受字符串参数
+示例：`db.dropUser(“admin”)`
+`db.dropAllUser()` 删除当前库的所有用户
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ![](static/images/home.png)
