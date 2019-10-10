@@ -7,13 +7,11 @@ var dbURI = 'mongodb://182.254.195.126:27017/students';
 const options = {
     useNewUrlParser: true //使用客户端
     , useUnifiedTopology: true //报错
-    , authSource: "admin",
-    user: "togoc",
-    pass: "tgc.123"
+    // }
+    , authSource: "admin"
+    , user: "togoc"
+    , pass: "tgc.123"
 }
-// ,
-//     user: "togoc",
-//     pass: "tgc.123",
 
 // Create the database connection
 mongoose.connect(dbURI, options);
