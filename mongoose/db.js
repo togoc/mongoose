@@ -3,14 +3,14 @@ const db = mongoose.connection;
 
 
 // Build the connection string
-var dbURI = 'mongodb://localhost/students';
-
-// Create the database connection
-mongoose.connect(dbURI, {
+var dbURI = 'mongodb://root:tgc.123@localhost/students';
+const options = {
     useNewUrlParser: true //使用客户端
     , useUnifiedTopology: true //报错
+}
 
-});
+// Create the database connection
+mongoose.connect(dbURI, options);
 
 // CONNECTION EVENTS
 // When successfully connected
