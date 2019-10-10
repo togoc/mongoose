@@ -3,11 +3,13 @@ const db = mongoose.connection;
 
 
 // Build the connection string
-var dbURI = 'mongodb://togoc:tgc.123@localhost/students';
+var dbURI = 'mongodb://localhost/students';
 const options = {
     useNewUrlParser: true //使用客户端
     , useUnifiedTopology: true //报错
-    , authSource: "admin"
+    , authSource: "admin",
+    user: "togoc",
+    pass: "tgc.123"
 }
 // ,
 //     user: "togoc",
