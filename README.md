@@ -106,8 +106,8 @@
 
 ### 添加用户
 
-`use db`
-`db.createUser({user:"用户名",pwd:"密码",roles:[{ role: "readWrite", db: "所属数据库" }]})`
+|`use db`|
+|`db.createUser({user:"用户名",pwd:"密码",roles:[{ role: "readWrite", db: "所属数据库" }]})`|
 
 * 先进入数据库然后再创建用户及其权限
 
