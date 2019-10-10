@@ -104,6 +104,15 @@
 
 关闭27017防火墙端口: `iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 27017 -j ACCEPT`
 
+### 创建管理员账户
+* 先进入admin数据库 : `use admin`
+* 创建用户: `db.createUser({user:"用户名",pwd:"密码",roles:[{ role: "root", db: "admin" }]})` 
+* 修改配置文件,需要用户验证登录: `vim /etc/mongodb.conf` 将 `auth = true` 注释去掉
+* 重启数据库 `/etc/init.d/mongodb restart`
+* 重新进入数据库,现在是没有任何权限的,先进入admin数据库.
+*  `use admin`
+*  输入管理员账户密码: `db.auth("用户名","密码")`.
+*  好了可以开始你的表演了...
 ### 添加用户
 | 命令                                                                                        |       作用       |
 | :------------------------------------------------------------------------------------------ | :--------------: |
