@@ -98,6 +98,12 @@
 ## 数据库基本操作
 [实例地址](http:182.254.195.126:8989)
 
+配置文件地址: `/etc/mongodb.conf`
+
+数据库重启: `/etc/init.d/mongodb restart`
+
+关闭27017防火墙端口: `iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 27017 -j ACCEPT`
+
 ### 添加用户
     ```
     use db
@@ -107,9 +113,12 @@
 
 ### 删除用户
 进入对应数据库 `show users` 可以显示当前数据库所有用户及其权限
-`db.dropUser(<user_name>)` 删除某个用户，接受字符串参数
-示例：`db.dropUser(“admin”)`
-`db.dropAllUser()` 删除当前库的所有用户
+
+|            命令            |                使用                |
+| :------------------------: | :--------------------------------: |
+|       `show users`"        | 可以显示当前数据库所有用户及其权限 |
+| `db.dropUser(<user_name>)` |    删除某个用户，接受字符串参数    |
+|     `db.dropAllUser()`     |        删除当前库的所有用户        |
 
 
 
