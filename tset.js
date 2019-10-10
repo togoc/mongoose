@@ -69,7 +69,7 @@ var studentsSchema = Schema({
 //     let name = this.name ? "my name is " + this.name : "i don`t have a name."
 //     console.log(name)
 // }
-mongoose.model("students", studentsSchema)
+const students = mongoose.model("students", studentsSchema)
 students.find(function (err, res) {
     console.log(res)
 })
