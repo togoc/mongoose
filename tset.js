@@ -3,7 +3,7 @@ const db = mongoose.connection;
 
 
 // Build the connection string
-var dbURI = 'mongodb://localhost/students';
+var dbURI = 'mongodb://182.254.195.126:27017/students';
 const options = {
     useNewUrlParser: true //使用客户端
     , useUnifiedTopology: true //报错
