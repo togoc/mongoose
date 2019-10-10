@@ -19,7 +19,6 @@ const options = {
 mongoose.connect(dbURI, options);
 
 
-var mongoose = require("./db")
 
 var Schema = mongoose.Schema
 
