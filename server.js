@@ -113,7 +113,7 @@ app.get("/list", function (rq, rs) {
 app.get("/remove", function (rq, rs) {
     let name = rq.query.name
     students.deleteOne({ name }, function (res) {
-        if (rq.query.pic != "/static/images/h_unknown.png")
+        if (rq.query.pic != "/static/images/file.gif")
             if (fs.existsSync(__dirname + rq.query.pic)) {
                 fs.unlinkSync(__dirname + rq.query.pic)
             }
