@@ -114,15 +114,16 @@ function showDocument(array) {
  * @param {Boolean} processData 发送文件选false,默认true
  * @param {Boolean} contentType 发送文件选false,默认true
  */
-async function ajax(url, type = "get", data = {}, processData = true, contentType = true) {
+function ajax(url, type = "get", data = {}, processData = true, contentType = true) {
     let method = { url, type, data, processData, contentType }
     if (method.contentType)
         delete method.contentType
     $(".loading").show()
-    return await new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         $.ajax(method).done(
             function (res) {
                 student_list = res.res
+                console.log(res)
                 resolve(res)
                 $(".loading").hide()
             }
@@ -133,11 +134,12 @@ async function ajax(url, type = "get", data = {}, processData = true, contentTyp
 
 
 // 登录返回
-function startLoad() {
+async function startLoad() {
     let url = "/list"
-    ajax(url).then(function (res) {
-        showDocument(res.res)
-    })
+    showDocument((await ajax(url)).res)
+    // ajax(url).then(function (res) {
+    //     showDocument(res.res)
+    // })
 }
 
 /**
