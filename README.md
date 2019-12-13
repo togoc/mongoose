@@ -99,6 +99,8 @@
 [实例地址](http:182.254.195.126:8989)
 [官方文档参考](http://www.mongoosejs.net/docs/connections.html)
 
+[内嵌数组操作](https://blog.csdn.net/chaoyangsun/article/details/79829368)
+
 配置文件地址: `/etc/mongodb.conf`
 
 数据库重启: `/etc/init.d/mongodb restart`
