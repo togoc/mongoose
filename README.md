@@ -6,7 +6,7 @@
 * 添加favicon.ico:` <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico" />`
 * 添加防注入
 
-    ```  
+    ```js 
         let reg = /<|>|%|\\|"|=|'|{|}|!|\?|\(|\)|\*/;
         for (let i in obj) {
             if (obj[i] == "") {
@@ -28,7 +28,7 @@
     ```
 * 添加上传图片
     * 删除暂存的图片
-        ```
+        ```js
         /**
         * (无法删除文件夹)
         * @param {string} str 输入一个文件夹地址删除里面的文件
@@ -43,7 +43,7 @@
         }
         ```
     *  存图片防止目录不存在
-        ```
+        ```js
         /**
         * 递归创建文件夹
         * @param {string} str 输入一个有关路径的字符串
@@ -70,7 +70,7 @@
   
  > ![](static/images/loading.png)
 * 添加异步处理ajax请求
-    ```
+    ```js
     /**
    * 
    * @param {string} url 请求地址
@@ -134,7 +134,7 @@
 
 ### 密码连接
 * 带密码的连接数据库
-    ```
+    ```js
         // Build the connection string
         var dbURI = 'mongodb://localhost/students';
         const options = {
@@ -158,7 +158,30 @@
     port = 27017
     ```
 * 如果再不行的话修改下服务器的端口安全策略,添加27017端口
+  
+### 数据库备份与恢复
+#### 备份
++ `mongodump -h <hostname><:port> -d dbname -o dbdirectory`
+  + -h ：
+    + MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017
+  + -d :
+    + 需要备份的数据库实例，例如：test
+  + -o ：
+    + 备份的数据存放位置,为空时在当前目录
++ `mongodump` 命令不加任何参数, 备份所有localhost:27017数据库在当前目录
 
+
+#### 恢复
+
++ `mongorestore -h <hostname><:port> -d dbname <path>`
+  + -h ：
+    + MongDB所在服务器地址，例如：127.0.0.1，当然也可以指定端口号：127.0.0.1:27017
+  + -d,-db :
+    + 实例恢复后的名字,可以与备份的不同
+  + --drop :
+    + 恢复的时候, 先删除当前数据(如果当前有相同数据库名), 然后恢复备份的数据。
+  + `<path>` : 最后的一个参数,设置备份数据所在位置.
+  + 例子 : `mongorestore -h localhost:27017 -d  students  ./students`
 
 
 
