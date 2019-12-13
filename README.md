@@ -182,6 +182,8 @@
     + 恢复的时候, 先删除当前数据(如果当前有相同数据库名), 然后恢复备份的数据。
   + `<path>` : 最后的一个参数,设置备份数据所在位置.
   + 例子 : `mongorestore -h localhost:27017 -d  students  ./students`
+  + 加密数据库恢复例子: `mongorestore -u <username> -p <password> -h localhost:27017 -d article ./article --authenticationDatabase admin`
+
 
 
 
