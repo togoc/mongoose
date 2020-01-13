@@ -160,6 +160,7 @@
     port = 27017
     ```
 * 如果再不行的话修改下服务器的端口安全策略,添加27017端口
+<hr>
   
 ### 数据库备份与恢复
 #### 备份
@@ -169,7 +170,7 @@
   + -d :
     + 需要备份的数据库实例，例如：test
   + -o ：
-    + 备份的数据存放位置,为空时在当前目录
+    + 备份的数据存放位置,为空时在当前目录(文件名)
 + `mongodump` 命令不加任何参数, 备份所有localhost:27017数据库在当前目录
 
 
@@ -186,18 +187,19 @@
   + 例子 : `mongorestore -h localhost:27017 -d  students  ./students`
   + 加密数据库恢复例子: `mongorestore -u <username> -p <password> -h localhost:27017 -d article ./article --authenticationDatabase admin`
 
+### 备份和恢复单个集合
+#### 备份
++ `mongoexport -h localhost:27017 -d www -c mallshop_swiperlists -o  swiperlist`
+
+#### 恢复
++ `mongoimport -u xxx -p xxx  --host xxx --port xxx --db xx --collection xxx --file xxx --authenticationDatabase admin`
 
 
 
-
-
-
-
-
-
-
-
-
+<br>
+<br>
+<br>
+<hr>
 
 
 
