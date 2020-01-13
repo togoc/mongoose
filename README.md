@@ -95,12 +95,9 @@
 
 
 
-## 数据库基本操作
-[实例地址](http:182.254.195.126:8989)
-[官方文档参考](http://www.mongoosejs.net/docs/connections.html)
+<hr>
 
-[内嵌数组操作](https://blog.csdn.net/chaoyangsun/article/details/79829368)
-
+## 服务器配置
 配置文件地址: `/etc/mongodb.conf`
 
 数据库重启: `/etc/init.d/mongodb restart`
@@ -161,7 +158,17 @@
     ```
 * 如果再不行的话修改下服务器的端口安全策略,添加27017端口
 <hr>
-  
+
+## 数据库基本操作
+
+### [实例地址](http:182.254.195.126:8989)
+### [官方文档参考](http://www.mongoosejs.net/docs/connections.html)
+
+###  [内嵌数组操作](https://blog.csdn.net/chaoyangsun/article/details/79829368)
+
+### [数组操作](https://segmentfault.com/q/1010000014336161)
++ `doc.markModified('array')`
+
 ### 数据库备份与恢复
 #### 备份
 + `mongodump -h <hostname><:port> -d dbname -o dbdirectory`
